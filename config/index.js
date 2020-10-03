@@ -2,11 +2,10 @@ const dotenv = require('dotenv');
 
 // Set the NODE_ENV to 'development' by default
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+const envFound = dotenv.config({ path: `./.env.${process.env.NODE_ENV}` });
 
-const envFound = dotenv.config();
 if (envFound.error) {
   // This error should crash whole process
-
   throw new Error("⚠️  Couldn't find .env file  ⚠️");
 }
 
@@ -16,7 +15,7 @@ module.exports = {
   /**
    * Your favorite port
    */
-  port: parseInt(process.env.PORT, 5000),
+  port: parseInt(process.env.PORT, 10) || 5000,
 
   /**
    * That long string from mlab
@@ -32,7 +31,7 @@ module.exports = {
    * Used by log4js configuration
    */
   loggingConfig: {
-    appenders: { "nodejs-api-ain": { type: "file", filename: "cheese.log" } },
+    appenders: { "nodejs-api-ain": { type: "file", filename: "logs/nodejs-api-ain.log" } },
     categories: { default: { appenders: ["nodejs-api-ain"], level: process.env.LOG_LEVEL || 'debug' } }
   },
 };

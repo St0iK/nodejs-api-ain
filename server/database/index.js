@@ -12,7 +12,7 @@ module.exports = ({ logger, config }) => {
   // print mongoose logs in dev env
   mongoose.set('debug', true);
 
-  mongoose.connect(config.db, {
+  mongoose.connect(config.databaseURL, {
     keepAlive: 1,
     useNewUrlParser: true,
     useUnifiedTopology: true

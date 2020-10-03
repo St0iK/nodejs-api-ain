@@ -2,7 +2,7 @@ const User = require("../../../models/User");
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const keys = require('./../../../../config/keys')
+const { jwtSecret } = require('../../../../config')
 const { validationResult } = require('express-validator');
 const errorFormatter = require('../../../utils/error-formatter');
 
@@ -77,7 +77,7 @@ const loginUser = async (req, res) => {
     const payload = { id: user.id, name: user.name, avatar: user.avatar }; // Create JWT Payload
 
     // Sign Token
-    jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+    jwt.sign(payload, jwtSecret, { expiresIn: 3600 }, (err, token) => {
         res.json({
             success: true,
             token: 'Bearer ' + token
