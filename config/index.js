@@ -1,27 +1,38 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
 
-const fs = require('fs');
-const path = require('path');
+// Set the NODE_ENV to 'development' by default
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-const ENV = process.env.NODE_ENV || 'development';
+const envFound = dotenv.config();
+if (envFound.error) {
+  // This error should crash whole process
 
-const envConfig = require(path.join(__dirname, 'environments', ENV));
-const dbConfig = loadDbConfig();
-
-const config = Object.assign({
-  [ENV]: true,
-  env: ENV,
-  db: dbConfig || 'mongodb+srv://devconnector:123123123@cluster0-ztwjn.gcp.mongodb.net/test?retryWrites=true&w=majority'
-}, envConfig);
-
-module.exports = config;
-
-function loadDbConfig() {
-  if (process.env.mongoURI) {
-    return process.env.mongoURI;
-  }
-
-  if (fs.existsSync(path.join(__dirname, './database.js'))) {
-    return require('../server/database')[ENV];
-  }
+  throw new Error("⚠️  Couldn't find .env file  ⚠️");
 }
+
+module.exports = {
+  [process.env.NODE_ENV]: true,
+  env: process.env.NODE_ENV,
+  /**
+   * Your favorite port
+   */
+  port: parseInt(process.env.PORT, 5000),
+
+  /**
+   * That long string from mlab
+   */
+  databaseURL: process.env.MONGODB_URI,
+
+  /**
+   * Your secret sauce
+   */
+  jwtSecret: process.env.JWT_SECRET,
+
+  /**
+   * Used by log4js configuration
+   */
+  loggingConfig: {
+    appenders: { "nodejs-api-ain": { type: "file", filename: "cheese.log" } },
+    categories: { default: { appenders: ["nodejs-api-ain"], level: process.env.LOG_LEVEL || 'debug' } }
+  },
+};
