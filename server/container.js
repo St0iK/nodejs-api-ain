@@ -3,7 +3,7 @@ const { scopePerRequest } = require('awilix-express');
 
 const router = require('./http/router');
 const Application = require('./app/application');
-const Server = require('./http/Server');
+const Server = require('./http/server');
 const logger = require('./logging/logger');
 const config = require('../config/index');
 const database = require('./database');
