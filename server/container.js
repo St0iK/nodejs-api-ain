@@ -2,7 +2,7 @@ const { createContainer, asClass, asFunction, asValue } = require('awilix');
 const { scopePerRequest } = require('awilix-express');
 
 const router = require('./http/router');
-const Application = require('./app/Application');
+const Application = require('./app/application');
 const Server = require('./http/Server');
 const logger = require('./logging/logger');
 const config = require('../config/index');
