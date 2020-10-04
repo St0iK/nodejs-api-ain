@@ -1,9 +1,9 @@
 # Node.js - Express API
 
-* Clean Architecture
-* Unit Testing
-* Integration Testing
-* Load testing
+- Clean Architecture
+- Unit Testing
+- Integration Testing
+- Load testing
 
 ---
 
@@ -13,3 +13,23 @@
 - [x] **[JWT](https://github.com/auth0/node-jsonwebtoken)**
 - [x] **[Passport](http://www.passportjs.org/)**
 - [x] **[Passport-jwt](https://github.com/themikenicholson/passport-jwt)**
+
+# HTTPie usage
+
+### Register a new user
+
+```
+http -f POST localhost:5000/api/users/register email='mg.something@gmail.com' name='My Name' password='123123123'
+```
+
+### Get all Profiles
+
+```
+http localhost:5000/api/profile/all
+```
+
+### Get all Posts
+
+```
+http localhost:5000/api/posts
+```
