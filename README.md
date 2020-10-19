@@ -14,6 +14,12 @@
 - [x] **[Passport](http://www.passportjs.org/)**
 - [x] **[Passport-jwt](https://github.com/themikenicholson/passport-jwt)**
 
+# Docker
+
+```
+docker build -t st0ik/nodejs-api-ain:latest .
+```
+
 # HTTPie usage
 
 ### Register a new user

@@ -1,0 +1,5 @@
+apps:
+  - name: nodejs-api-ain
+    script: ./server/index.js
+    exec_mode: cluster
+    instances: max
