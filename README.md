@@ -18,6 +18,7 @@
 
 ```
 docker build -t st0ik/nodejs-api-ain:latest .
+docker run -p 5000:5000 st0ik/nodejs-api-ain
 ```
 
 # HTTPie usage
