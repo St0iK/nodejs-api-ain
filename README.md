@@ -19,6 +19,22 @@
 ```
 docker build -t st0ik/nodejs-api-ain:latest .
 docker run -p 5000:5000 st0ik/nodejs-api-ain
+
+# Build prod image (.env.production)
+docker build -f Dockerfile.production -t st0ik/nodejs-api-ain-prod:latest .
+docker run -p 5000:5000 st0ik/nodejs-api-ain-prod
+```
+
+# Autocannon
+
+```
+autocannon -c100 -d100 localhost:5000/api/posts
+```
+
+# Clinic.js Doctor
+
+```
+clinic doctor --on-port=’autocannon -c100 -d100 localhost:$PORT/seed/v1’ -- node server/index.js
 ```
 
 # HTTPie usage

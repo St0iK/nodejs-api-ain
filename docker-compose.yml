@@ -25,7 +25,7 @@ services:
     image: mongo:latest
     container_name: db
     restart: unless-stopped
-    env_file: .env
+    # env_file: .env
     # If you want to add basic auth set the following
     # environment:
     #   - MONGO_INITDB_ROOT_USERNAME=root
