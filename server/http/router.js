@@ -1,16 +1,26 @@
 const express = require('express');
-
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
 const users = require('../routes/api/users');
 const profile = require('../routes/api/profile');
 const posts = require('../routes/api/posts');
-const { Router } = require('express');
+const compression = require('compression');
+const methodOverride = require('method-override');
+const cors = require('cors');
 
+const { Router } = require('express');
 
 module.exports = ({ config, containerMiddleware, loggerMiddleware, errorHandler }) => {
   const router = Router();
+
+  router.use(cors());
+  router.use(compression());
+  router.use(containerMiddleware);
+  router.use(loggerMiddleware);
+
+  // https://learning.oreilly.com/library/view/building-a-restful/9781785285714/ch05s05.html
+  router.use(methodOverride('X-HTTP-Method-Override'))
 
   // Body parser middleware
   router.use(bodyParser.urlencoded({ extended: false }));
@@ -37,8 +47,6 @@ module.exports = ({ config, containerMiddleware, loggerMiddleware, errorHandler 
     });
   }
 
-  // const port = process.env.PORT || 5000;
-
-  // app.listen(port, () => console.log(`Server running on port ${port}`));
+  router.use(errorHandler);
   return router;
 };

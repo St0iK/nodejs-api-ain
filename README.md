@@ -23,6 +23,10 @@ docker run -p 5000:5000 st0ik/nodejs-api-ain
 # Build prod image (.env.production)
 docker build -f Dockerfile.production -t st0ik/nodejs-api-ain-prod:latest .
 docker run -p 5000:5000 st0ik/nodejs-api-ain-prod
+
+# Docker Compose
+docker-compose build
+docker-compose up
 ```
 
 # Autocannon
