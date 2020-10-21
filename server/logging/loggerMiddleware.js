@@ -1,8 +1,4 @@
-const morgan = require('morgan');
-const LoggerStreamAdapter = require('./LoggerStreamAdapter');
-
-module.exports = ({ logger }) => {
-  return morgan('dev', {
-    stream: LoggerStreamAdapter.toStream(logger)
-  });
+const log4js = require('log4js');
+module.exports = ({ logger, config }) => {
+  return log4js.connectLogger(logger, { level: config.logLevel })
 };

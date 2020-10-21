@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
 
+process.env.LOG_LEVEL = process.env.LOG_LEVEL || 'debug'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const envFound = dotenv.config({ path: `./.env.${process.env.NODE_ENV}` });
 
@@ -14,6 +15,7 @@ module.exports = {
   port: parseInt(process.env.PORT, 10) || 5000,
   databaseURL: process.env.MONGODB_URI,
   jwtSecret: process.env.JWT_SECRET,
+  logLevel: process.env.LOG_LEVEL,
   loggingConfig: {
     appenders: {
       "file": {
@@ -25,7 +27,7 @@ module.exports = {
     },
     categories: {
       default: {
-        appenders: ["file", "stdout"], level: process.env.LOG_LEVEL || 'debug'
+        appenders: ["file", "stdout"], level: process.env.LOG_LEVEL
       }
     }
   },
