@@ -35,7 +35,7 @@ const createPost = async (req, res) => {
         return res.status(400).json(errorFormatter(errors));
     }
 
-    const newPost = new Post({
+    const newPost = await Post.create({
         text: req.body.text,
         name: req.body.name,
         avatar: req.body.avatar,
@@ -43,7 +43,7 @@ const createPost = async (req, res) => {
     });
 
     const post = await newPost.save();
-    res.json(post);
+    res.json(newPost);
 };
 
 /**
