@@ -12,6 +12,7 @@ const cors = require('cors');
 const { Router } = require('express');
 
 module.exports = ({ config, containerMiddleware, loggerMiddleware, errorHandler }) => {
+  console.log('Configuring Router');
   const router = Router();
 
   router.use(cors());

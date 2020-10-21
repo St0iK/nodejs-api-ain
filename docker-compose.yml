@@ -17,8 +17,10 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - .:/home/node/app
-      - node_modules:/home/node/app/node_modules
+      # https://devopsheaven.com/docker/docker-compose/volumes/2018/01/16/volumes-in-docker-compose.html
+      # Syntax: /host/path:/container/path
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
     networks:
       - app-network
   db:

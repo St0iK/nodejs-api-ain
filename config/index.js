@@ -15,7 +15,18 @@ module.exports = {
   databaseURL: process.env.MONGODB_URI,
   jwtSecret: process.env.JWT_SECRET,
   loggingConfig: {
-    appenders: { "nodejs-api-ain": { type: "file", filename: "logs/nodejs-api-ain.log" } },
-    categories: { default: { appenders: ["nodejs-api-ain"], level: process.env.LOG_LEVEL || 'debug' } }
+    appenders: {
+      "file": {
+        type: "file", filename: "logs/nodejs-api-ain.log"
+      },
+      "stdout": {
+        type: "stdout"
+      },
+    },
+    categories: {
+      default: {
+        appenders: ["file", "stdout"], level: process.env.LOG_LEVEL || 'debug'
+      }
+    }
   },
 };

@@ -13,6 +13,7 @@ class Server {
   start() {
     return new Promise((resolve) => {
       console.log('About to start express!');
+      this.logger.log('About to start express!');
       const http = this.express
         .listen(this.config.port, () => {
           console.log(http.address());
